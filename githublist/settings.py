@@ -129,7 +129,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Include environment settings
 
-if 'ENV' in os.environ:
-    import importlib
+if 'ENV' in os.environ and os.environ['ENV'] == 'production':
+    import dj_database_url
 
-    importlib.import_module("settings_%s" % os.environ['ENV'])
+    DEBUG = False
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
