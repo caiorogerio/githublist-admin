@@ -130,7 +130,11 @@ LOGOUT_REDIRECT_URL = '/'
 # Include environment settings
 
 if 'ENV' in os.environ and os.environ['ENV'] == 'production':
-    import dj_database_url
-
     DEBUG = False
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+# Configure Django App for Heroku.
+import django_heroku
+
+TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
+
+django_heroku.settings(locals())
