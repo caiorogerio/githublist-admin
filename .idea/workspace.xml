@@ -146,6 +146,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/githublist/templates/admin" />
@@ -223,8 +224,8 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Django server.server" />
       <item itemvalue="Django tests.tests" />
+      <item itemvalue="Django server.server" />
     </list>
   </component>
   <component name="SvnConfiguration">
