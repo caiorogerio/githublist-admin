@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}Atelieware | Github list{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Github list</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block welcome-msg %}
+    {% trans 'Welcome' %}
+    {% if not user.is_anonymous_superuser %}
+    , <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+    {% endif %}
+{% endblock %}
+
+{% block userlinks %}
+    {% if user.is_anonymous_superuser %}
+        <a href="{% url 'admin:login' %}">{% trans 'Log in' %}</a>
+    {% else %}
+        <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+    {% endif %}
+{% endblock %}
