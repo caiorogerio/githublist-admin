@@ -72,7 +72,7 @@ class RepositoryManager(models.Manager):
     'forks': 'forks',
 })
 class Repository(ImportedModel):
-    name = models.CharField(max_length=30, unique=True)
+    name = models.CharField(max_length=100, unique=True)
     description = models.TextField(max_length=300, blank=True, null=True)
     stars = models.IntegerField(null=True)
     forks = models.IntegerField(null=True)
