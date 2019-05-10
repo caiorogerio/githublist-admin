@@ -132,4 +132,4 @@ LOGOUT_REDIRECT_URL = '/'
 if 'ENV' in os.environ:
     import importlib
 
-    importlib.import_module(".settings-%s" % os.environ['ENV'])
+    importlib.import_module("settings_%s" % os.environ['ENV'])
