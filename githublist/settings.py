@@ -129,8 +129,8 @@ LOGOUT_REDIRECT_URL = '/'
 
 # Include environment settings
 
-# if 'ENV' in os.environ and os.environ['ENV'] == 'production':
-#     DEBUG = False
+if 'ENV' in os.environ and os.environ['ENV'] == 'production':
+    DEBUG = False
 
 # Configure Django App for Heroku.
 import django_heroku
