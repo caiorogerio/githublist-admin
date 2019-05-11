@@ -38,6 +38,10 @@ class Language(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def repositories_number(self):
+        return self.repositories.count()
+
 
 @remote_values({
     'name': 'login',
@@ -45,7 +49,7 @@ class Language(models.Model):
 })
 class User(ImportedModel):
     name = models.CharField(max_length=30, unique=True)
-    avatar = models.ImageField(max_length=100)
+    avatar = models.URLField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -88,3 +92,11 @@ class Repository(ImportedModel):
     @property
     def owner_avatar(self):
         return self.owner.avatar
+
+    @property
+    def link(self):
+        return "https://github.com/{user}/{repository}".format(user=self.owner.name, repository=self.name)
+
+    @property
+    def git(self):
+        return "%s.git" % self.link

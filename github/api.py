@@ -7,7 +7,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = User
-        fields = ('name', )
+        fields = ('name', 'avatar',)
 
 
 class RepositorySerializer(serializers.HyperlinkedModelSerializer):
@@ -15,7 +15,7 @@ class RepositorySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Repository
-        fields = ('name', 'description', 'owner', 'forks', 'stars',)
+        fields = ('name', 'description', 'owner', 'forks', 'stars', 'link', 'git',)
 
 
 class LanguageDetailSerializer(serializers.HyperlinkedModelSerializer):
@@ -31,8 +31,14 @@ class LanguageListSerializer(LanguageDetailSerializer):
 
     class Meta:
         model = Language
-        fields = ('url', 'name',)
+        fields = ('url', 'name', 'repositories_number',)
 
 
-class LanguageView(generics.ListAPIView):
+class LanguageListView(generics.ListAPIView):
     queryset = Language.objects.all()
+    serializer_class = LanguageListSerializer
+
+
+class LanguageDetailView(generics.RetrieveAPIView):
+    queryset = Language.objects.all()
+    serializer_class = LanguageDetailSerializer
