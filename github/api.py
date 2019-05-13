@@ -35,11 +35,14 @@ class LanguageListSerializer(LanguageDetailSerializer):
 
 
 class LanguageListView(generics.ListAPIView):
-    queryset = Language.objects.all()
+    queryset = Language.objects.get_queryset()
     serializer_class = LanguageListSerializer
     lookup_field = 'slug'
+    paginate_by = 50
+    ordering = ('name',)
+
 
 class LanguageDetailView(generics.RetrieveAPIView):
-    queryset = Language.objects.all()
+    queryset = Language.objects.get_queryset()
     serializer_class = LanguageDetailSerializer
     lookup_field = 'slug'

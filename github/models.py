@@ -48,6 +48,10 @@ class Language(models.Model):
         self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
 
+    class Meta:
+        ordering = ('name',)
+
+
 @remote_values({
     'name': 'login',
     'avatar': 'avatar_url',

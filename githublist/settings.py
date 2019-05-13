@@ -25,7 +25,10 @@ SECRET_KEY = 'f!#y$8e+msptf58(io#oxq#5ey#m35k5#$&)r(0&9=k*+on769'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost:8000',
+    '127.0.0.1:8000',
+]
 
 
 # Application definition
@@ -136,17 +139,25 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+
 # Admin config
 
 LOGOUT_REDIRECT_URL = '/'
 
-# Configure Django App for Heroku.
-import django_heroku
-
-TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
-
-django_heroku.settings(locals())
-
-
 # CORS config
-CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_URLS_REGEX = r'^/api/.*$'
+
+CORS_ALLOW_METHODS = (
+    'GET',
+    'OPTIONS',
+    'HEAD',
+)
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:4200',
+    'http://127.0.0.1:4200',
+)
