@@ -8,7 +8,7 @@ class RepositoryInline(admin.TabularInline):
 
     verbose_name_plural = 'Repositories'
     readonly_fields = ('owner', 'avatar', 'name', 'description', 'forks', 'stars',)
-    exclude = ('id',)
+    # exclude = ('id',)
     ordering = ('-stars',)
     can_delete = False
 
@@ -25,6 +25,7 @@ class RepositoryInline(admin.TabularInline):
 @admin.register(Language)
 class LanguageAdmin(admin.ModelAdmin):
     list_display = ('name', 'repositories',)
+    exclude = ('slug',)
 
     inlines = [
         RepositoryInline,
