@@ -1,7 +1,7 @@
 from .settings import *
 import django_heroku
 
-DEBUG = False
+DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = False
 
 ALLOWED_HOSTS = [
