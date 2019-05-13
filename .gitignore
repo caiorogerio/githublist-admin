@@ -198,3 +198,4 @@ fabric.properties
 
 # Staticfiles
 staticfiles/
+!staticfiles/blank
