@@ -8,5 +8,5 @@ app_name = 'github'
 
 urlpatterns = format_suffix_patterns([
     path('languages/', LanguageListView.as_view(), name='language-list'),
-    path('languages/<int:pk>/', LanguageDetailView.as_view(), name='language-detail'),
+    path('languages/<slug>/', LanguageDetailView.as_view(), name='language-detail'),
 ])

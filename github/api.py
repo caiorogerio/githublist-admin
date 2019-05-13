@@ -19,7 +19,7 @@ class RepositorySerializer(serializers.HyperlinkedModelSerializer):
 
 
 class LanguageDetailSerializer(serializers.HyperlinkedModelSerializer):
-    url = serializers.HyperlinkedIdentityField(view_name='github:language-detail', read_only=True)
+    url = serializers.HyperlinkedIdentityField(view_name='github:language-detail', read_only=True, lookup_field='slug')
     repositories = RepositorySerializer(many=True, read_only=True)
 
     class Meta:
@@ -37,8 +37,9 @@ class LanguageListSerializer(LanguageDetailSerializer):
 class LanguageListView(generics.ListAPIView):
     queryset = Language.objects.all()
     serializer_class = LanguageListSerializer
-
+    lookup_field = 'slug'
 
 class LanguageDetailView(generics.RetrieveAPIView):
     queryset = Language.objects.all()
     serializer_class = LanguageDetailSerializer
+    lookup_field = 'slug'

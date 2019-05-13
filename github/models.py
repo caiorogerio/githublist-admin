@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 def remote_values(dict):
@@ -34,6 +35,7 @@ class ImportedModel(models.Model):
 
 class Language(models.Model):
     name = models.CharField(max_length=30)
+    slug = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -42,6 +44,9 @@ class Language(models.Model):
     def repositories_number(self):
         return self.repositories.count()
 
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
 
 @remote_values({
     'name': 'login',
