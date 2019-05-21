@@ -1,3 +1,4 @@
+from django.db.models import Prefetch
 from rest_framework import serializers, generics
 
 from .models import Language, Repository, User
@@ -43,6 +44,11 @@ class LanguageListView(generics.ListAPIView):
 
 
 class LanguageDetailView(generics.RetrieveAPIView):
-    queryset = Language.objects.get_queryset()
+    queryset = Language.objects.prefetch_related(
+        Prefetch(
+            'repositories',
+            queryset=Repository.objects.order_by('-stars')
+        )
+    )
     serializer_class = LanguageDetailSerializer
     lookup_field = 'slug'
